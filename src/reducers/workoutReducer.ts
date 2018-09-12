@@ -7,8 +7,8 @@ import { Workout } from "../models/workout";
  */
 
 const initialState: IWorkoutState = {
-  currWorkout: new Workout(new WorkoutType("", 0, ""), 0),
-  currExercise: new Exercise("", 0, "", 0, 0, 0)
+  currExercise: new Exercise("", 0, "", 0, 0, 0),
+  currWorkout: new Workout(new WorkoutType("", 0, ""), 0)
 };
 export const workoutReducer = (
   state: IWorkoutState = initialState,
