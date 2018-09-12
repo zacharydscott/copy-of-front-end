@@ -11,8 +11,10 @@ import { combineReducers } from "redux";
  *  Each interface/reducer tracks a descrete aspect of the application
  *    User: user information, including login info, and basic bio info.
  *    Workout: info about the latest workout that is being logged in app by the user.
- *    info: info outside of immediate user input. The history of workouts, possible workout schemes and possible exercises,
+ *    info: info outside of immediate user input. The history of workouts, possible workout schemes and possible exercises
  */
+
+/* Basic information about the user that one would excpect. I think we'll store gender as "m" and "f" */
 export interface IUserState {
   username: string;
   password: string;
@@ -24,11 +26,19 @@ export interface IUserState {
   gender: string;
 }
 
+/* currWorkout is the workout that the user is currently building for submission. CurrExercise is the current 
+exercsie he/she is inputing into said workout object. */
 export interface IWorkoutState {
   currWorkout: Workout;
   currExercise: Exercise;
 }
 
+/**
+ *  workoutHistory contains info to generate a table of user generated workouts
+ * viewWorkout is a specific entry from the workout history that is being examined
+ * workoutList isa list of all possible workout schemes that a user can choose from.
+ * Similarly, exerciseList is a list of all possible exercises.
+ */
 export interface IInfoState {
   workoutHistory: WorkoutSnapshot[];
   viewWorkout: Workout;
@@ -36,6 +46,7 @@ export interface IInfoState {
   exerciseList: ExerciseType[];
 }
 
+/*Standard redux code to combine reducers into a state */
 export interface IState {
   user: IUserState;
   workout: IWorkoutState;
