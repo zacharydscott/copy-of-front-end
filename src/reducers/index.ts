@@ -7,7 +7,12 @@ import { infoReducer } from "./infoReducer";
 import { userReducer } from "./userReducer";
 import { workoutReducer } from "./workoutReducer";
 import { combineReducers } from "redux";
-
+/**
+ *  Each interface/reducer tracks a descrete aspect of the application
+ *    User: user information, including login info, and basic bio info.
+ *    Workout: info about the latest workout that is being logged in app by the user.
+ *    info: info outside of immediate user input. The history of workouts, possible workout schemes and possible exercises,
+ */
 export interface IUserState {
   username: string;
   password: string;
