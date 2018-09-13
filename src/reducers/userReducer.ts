@@ -2,7 +2,6 @@ import { IUserState } from ".";
 import { loginTypes } from "../actions/login/login.types";
 /**
  * See the index.ts file for an explanation of all state properties
-/**
  * See the index.ts file for an explanation of all state properties, and model files for explanation of
  * objects that comprise them.  When a new action type is caught in the switch, comment the
  * actions that use this type.
