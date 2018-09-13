@@ -6,6 +6,7 @@ import { IUserState } from ".";
  */
 
 const initialState: IUserState = {
+  accountNumber: 0,
   email: "",
   firstName: "",
   gender: "",

@@ -16,6 +16,7 @@ import { combineReducers } from "redux";
 
 /* Basic information about the user that one would excpect. I think we'll store gender as "m" and "f" */
 export interface IUserState {
+  accountNumber: number;
   username: string;
   password: string;
   email: string;
