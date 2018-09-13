@@ -1,4 +1,7 @@
 import { IUserState } from ".";
+import { loginTypes } from "../actions/login/login.types";
+/**
+ * See the index.ts file for an explanation of all state properties
 /**
  * See the index.ts file for an explanation of all state properties, and model files for explanation of
  * objects that comprise them.  When a new action type is caught in the switch, comment the
@@ -18,5 +21,28 @@ const initialState: IUserState = {
 };
 export const userReducer = (state: IUserState = initialState, action: any) => {
   switch (action.type) {
+    case loginTypes.UPDATE_USERNAME_AND_PASSWORD:
+      return {
+        ...state,
+        password: action.payload.password,
+        username: action.payload.username
+      };
+
+    case loginTypes.SUBMIT_LOGIN:
+      return {
+        ...state,
+        accountNumber: action.payload.accountNumber,
+        email: action.payload.email,
+        firstName: action.payload.firstName,
+        gender: action.payload.gender,
+        height: action.payload.height,
+        lastName: action.payload.lastName,
+        password: action.payload.password,
+        username: action.payload.username,
+        weight: action.payload.weight
+      };
+
+    default:
+      return state;
   }
 };

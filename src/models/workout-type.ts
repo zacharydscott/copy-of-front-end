@@ -1,3 +1,4 @@
+import { ExerciseType } from "./exercise-type";
 /**
  * This is a workout type (or workout scheme), not a particular user-generated workout. It contains
  * basic information about the workout, including a description and the exercsises that comprise it.
@@ -10,6 +11,19 @@ export class WorkoutType {
   public name: string;
   public id: number;
   public description: string;
+  public exercises: ExerciseType[];
+  
+  constructor(
+    name: string,
+    id: number,
+    description: string,
+    exercises: ExerciseType[]
+  ) {
+    this.name = name;
+    this.id = id;
+    this.description = description;
+    this.exercises = exercises;
+      
   constructor(name: string, id: number, description: string) {
     this.name = name;
     this.id = id;

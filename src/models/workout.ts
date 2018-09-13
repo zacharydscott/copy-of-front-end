@@ -7,6 +7,7 @@ import { Exercise } from "./exercise";
  * This is used whenever information about past workouts are needed, and when a new workout
  * is being logged.
  */
+  
 import { WorkoutType } from "./workout-type";
 export class Workout {
   public order: number;
