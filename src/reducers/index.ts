@@ -7,6 +7,7 @@ import { infoReducer } from "./infoReducer";
 import { userReducer } from "./userReducer";
 import { workoutReducer } from "./workoutReducer";
 import { combineReducers } from "redux";
+import { miscReducer } from "./miscReducer";
 /**
  *  Each interface/reducer tracks a descrete aspect of the application
  *    User: user information, including login info, and basic bio info.
@@ -47,15 +48,22 @@ export interface IInfoState {
   exerciseList: ExerciseType[];
 }
 
+export interface IMiscState {
+  errorMessage: string;
+  passwordCheck: string;
+}
+
 /*Standard redux code to combine reducers into a state */
 export interface IState {
   user: IUserState;
   workout: IWorkoutState;
   info: IInfoState;
+  misc: IMiscState;
 }
 
 export const state = combineReducers<IState>({
   info: infoReducer,
+  misc: miscReducer,
   user: userReducer,
   workout: workoutReducer
 });
