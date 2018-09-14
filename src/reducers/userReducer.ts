@@ -1,5 +1,6 @@
 import { IUserState } from ".";
 import { loginTypes } from "../actions/login/login.types";
+import { registerUserTypes } from "../actions/register-user/register-user.types";
 /**
  * See the index.ts file for an explanation of all state properties
  */
@@ -38,6 +39,23 @@ export const userReducer = (state: IUserState = initialState, action: any) => {
         weight: action.payload.weight
       };
 
+    case registerUserTypes.UPDATE_USER_REGISTER:
+      return {
+        ...state,
+        email: action.payload.email,
+        firstName: action.payload.firstName,
+        gender: action.payload.gender,
+        height: action.payload.height,
+        lastName: action.payload.lastName,
+        password: action.payload.password,
+        username: action.payload.username,
+        weight: action.payload.weight
+      };
+    case registerUserTypes.SUBMIT_REGISTRATION:
+      return {
+        ...state,
+        accountNumber: action.payload.accountNumber
+      };
     default:
       return state;
   }

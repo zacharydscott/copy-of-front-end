@@ -3,11 +3,14 @@ import { connect } from "react-redux";
 import { IState } from "../reducers";
 import { changeUsernameAndPassword } from "../actions/login/login.actions";
 import { submitLogin } from "../actions/login/login.actions";
+import "../App.css";
 interface IProps {
+  errorMessage: string;
   username: string;
   password: string;
+  accountNumber: string;
   changeUsernameAndPassword: (username: string, password: string) => any;
-  submitLogin: () => any;
+  submitLogin: (logUsername: string, logPassword: string) => any;
 }
 
 class Login extends React.Component<IProps, any> {
@@ -18,7 +21,7 @@ class Login extends React.Component<IProps, any> {
   }
   public login(e: any) {
     e.preventDefault();
-    this.props.submitLogin();
+    this.props.submitLogin(this.props.username, this.props.password);
   }
   public updateLogin(e: any) {
     e.preventDefault();
@@ -57,15 +60,20 @@ class Login extends React.Component<IProps, any> {
             onChange={this.updateLogin}
           />
         </div>
-        <button type="btn-primary" onClick={this.login}>
+        <br />
+        <button type=" button" className="btn btn-primary" onClick={this.login}>
           Login
         </button>
+        <p> {this.props.accountNumber}</p>
+        <p> {this.props.errorMessage} </p>
       </div>
     );
   }
 }
 const mapStateToProps = (state: IState) => {
   return {
+    accountNumber: state.user.accountNumber,
+    errorMessage: state.misc.errorMessage,
     password: state.user.password,
     username: state.user.username
   };

@@ -1,6 +1,7 @@
 import * as React from "react";
 import "./App.css";
-import Login from "./components/login";
+// import RegisterUser from "./components/register-user";
+// import Login from "./components/login";
 import logo from "./logo.svg";
 import { store } from "./store";
 import { Provider } from "react-redux";
@@ -17,7 +18,6 @@ class App extends React.Component {
           <p className="App-intro">
             To get started, edit <code>src/App.tsx</code> and save to reload.
           </p>
-          <Login />
         </div>
       </Provider>
     );
