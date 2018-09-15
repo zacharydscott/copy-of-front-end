@@ -38,7 +38,7 @@ export const submitLogin = (logUsername: string, logPassword: string) => (
   //   status: 200
   // };
 
-  fetch("http://localhost:8080/users/login", {
+  fetch("http://localhost:6969/users/login", {
     body: JSON.stringify({ username: logUsername, password: logPassword }),
     headers: { "Content-Type": "application/json" },
     method: "POST"

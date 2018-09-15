@@ -2,6 +2,7 @@ import { IWorkoutState } from ".";
 import { Exercise } from "../models/exercise";
 import { WorkoutType } from "../models/workout-type";
 import { Workout } from "../models/workout";
+import { workoutTypes } from "../actions/workout/workout.types";
 /**
  * See the index.ts file for an explanation of all state properties
  */
@@ -15,6 +16,11 @@ export const workoutReducer = (
   action: any
 ) => {
   switch (action.type) {
+    case workoutTypes.UPDATE_WORKOUT_TYPE:
+      return {
+        ...state,
+        currWorkout: action.payload.currWorkout
+      };
     default:
       return state;
   }

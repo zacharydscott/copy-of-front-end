@@ -48,7 +48,10 @@ export interface IInfoState {
   exerciseList: ExerciseType[];
 }
 
+/*random/misc things needed in state */
 export interface IMiscState {
+  workoutTypeText: string;
+  exerciseTypeText: string;
   errorMessage: string;
   passwordCheck: string;
 }

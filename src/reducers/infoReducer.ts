@@ -1,6 +1,7 @@
 import { IInfoState } from ".";
 import { WorkoutType } from "../models/workout-type";
 import { Workout } from "../models/workout";
+import { infoTypes } from "../actions/info/info.types";
 /**
  * See the index.ts file for an explanation of all state properties
  */
@@ -18,6 +19,11 @@ export const infoReducer = (state: IInfoState = initialState, action: any) => {
     //     ...state,
     //     workoutHistory: action.payload.workoutHistory
     //   };
+    case infoTypes.GET_WORKOUT_lIST:
+      return {
+        ...state,
+        workoutList: action.payload.workoutList
+      };
     default:
       return state;
   }
