@@ -3,7 +3,9 @@ import { miscTypes } from "../actions/misc/misc.types";
 import { registerUserTypes } from "../actions/register-user/register-user.types";
 const initialState: IMiscState = {
   errorMessage: "",
-  passwordCheck: ""
+  exerciseTypeText: "",
+  passwordCheck: "",
+  workoutTypeText: ""
 };
 
 export const miscReducer = (state: IMiscState = initialState, action: any) => {
@@ -17,6 +19,17 @@ export const miscReducer = (state: IMiscState = initialState, action: any) => {
       return {
         ...state,
         errorMessage: action.payload.errorMessage
+      };
+    case miscTypes.UPDATE_EXER_TEXT:
+      return {
+        ...state,
+        exerciseTypeText: action.payload.exerciseTypeText
+      };
+    case miscTypes.UPDATE_WORK_TEXT:
+      window.console.log("asd");
+      return {
+        ...state,
+        workoutTypeText: action.payload.workoutTypeText
       };
     default:
       return state;
