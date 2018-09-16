@@ -1,7 +1,8 @@
 import * as React from "react";
 import { connect } from "react-redux";
 import { Workout } from "../models/workout";
-import { IState, IWorkoutState } from "../reducers";
+import { IState } from "../reducers";
+import { Exercise } from "../models/exercise";
 import { updateWorkoutType } from "../actions/workout/workout.actions";
 import { WorkoutType } from "../models/workout-type";
 import { updateWorkText, updateExerText } from "../actions/misc/misc.actions";
@@ -9,7 +10,8 @@ import { getWorkoutList } from "../actions/info/info.actions";
 interface IProps {
   exerciseTypeText: string;
   workoutTypeText: string;
-  workout: IWorkoutState;
+  workout: Workout;
+  exercise: Exercise;
   workoutList: WorkoutType[];
   errorMessgae: string;
   getWorkoutList: () => any;
@@ -25,7 +27,7 @@ class NewWorkout extends React.Component<IProps, any> {
     this.changeWorkText = this.changeWorkText.bind(this);
   }
   public updateType(e: any) {
-    return 5;
+    e.preventDefault();
   }
   public changeWorkText(e: any) {
     e.preventDefault();
@@ -40,6 +42,7 @@ class NewWorkout extends React.Component<IProps, any> {
   public render() {
     const workList = (
       <div>
+        for
         {this.props.workoutList.map(workType => {
           if (
             workType.name.slice(0, this.props.workoutTypeText.length) ===
@@ -58,9 +61,6 @@ class NewWorkout extends React.Component<IProps, any> {
 
     return (
       <div>
-        <button onClick={this.props.getWorkoutList} />
-        <p>{this.props.getWorkoutList}</p>
-        <p>{workList}</p>
         <div className="dropdown">
           <button
             className="btn btn-secondary dropdown-toggle"
@@ -88,8 +88,9 @@ class NewWorkout extends React.Component<IProps, any> {
 const mapStateToProps = (state: IState) => {
   return {
     errorMessgae: state.misc.errorMessage,
+    exercise: state.workout.currExercise,
     exerciseTypeText: state.misc.exerciseTypeText,
-    workout: state.workout,
+    workout: state.workout.currWorkout,
     workoutList: state.info.workoutList,
     workoutTypeText: state.misc.workoutTypeText
   };
