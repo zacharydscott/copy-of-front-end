@@ -9,7 +9,7 @@ export const updateWorkoutType = (
   workout.type = newWorkoutType;
   return {
     payload: {
-      currWorkorkoutType: workout
+      currWorkorkout: workout
     },
     type: workoutTypes.UPDATE_WORKOUT_TYPE
   };

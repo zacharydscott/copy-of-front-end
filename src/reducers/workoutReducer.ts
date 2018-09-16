@@ -9,7 +9,7 @@ import { workoutTypes } from "../actions/workout/workout.types";
 
 const initialState: IWorkoutState = {
   currExercise: new Exercise("", 0, "", 0, 0, 0),
-  currWorkout: new Workout(new WorkoutType("", 0, "", []), 0)
+  currWorkout: new Workout(new WorkoutType("", 0, "", []), 0, [], "")
 };
 export const workoutReducer = (
   state: IWorkoutState = initialState,

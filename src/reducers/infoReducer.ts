@@ -8,7 +8,7 @@ import { infoTypes } from "../actions/info/info.types";
 
 const initialState: IInfoState = {
   exerciseList: [],
-  viewWorkout: new Workout(new WorkoutType("", 0, "", []), 0),
+  viewWorkout: new Workout(new WorkoutType("", 0, "", []), 0, [], ""),
   workoutHistory: [],
   workoutList: []
 };
@@ -19,10 +19,15 @@ export const infoReducer = (state: IInfoState = initialState, action: any) => {
     //     ...state,
     //     workoutHistory: action.payload.workoutHistory
     //   };
-    case infoTypes.GET_WORKOUT_lIST:
+    case infoTypes.GET_WORKOUT_LIST:
       return {
         ...state,
         workoutList: action.payload.workoutList
+      };
+    case infoTypes.GET_EXERCISE_LIST:
+      return {
+        ...state,
+        workoutList: action.payload.exerciseList
       };
     default:
       return state;

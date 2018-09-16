@@ -6,8 +6,10 @@ import { Exercise } from "../models/exercise";
 import { updateWorkoutType } from "../actions/workout/workout.actions";
 import { WorkoutType } from "../models/workout-type";
 import { updateWorkText, updateExerText } from "../actions/misc/misc.actions";
-import { getWorkoutList } from "../actions/info/info.actions";
+import { getWorkoutList, getExerciseList } from "../actions/info/info.actions";
+import { ExerciseType } from "../models/exercise-type";
 interface IProps {
+  exerciseList: ExerciseType;
   exerciseTypeText: string;
   workoutTypeText: string;
   workout: Workout;
@@ -15,6 +17,7 @@ interface IProps {
   workoutList: WorkoutType[];
   errorMessgae: string;
   getWorkoutList: () => any;
+  getExerciseList: () => any;
   updateWorkText: (text: string) => any;
   updateExerText: (text: string) => any;
   updateWorkoutType: (workout: Workout, workoutType: WorkoutType) => any;
@@ -28,7 +31,17 @@ class NewWorkout extends React.Component<IProps, any> {
   }
   public updateType(e: any) {
     e.preventDefault();
+
+    const newType = this.props.workoutList.find(type => {
+      return !!type.id === e.target.key;
+    });
+
+    this.props.updateWorkoutType(
+      this.props.workout,
+      newType || this.props.workoutList[0]
+    );
   }
+
   public changeWorkText(e: any) {
     e.preventDefault();
 
@@ -36,17 +49,20 @@ class NewWorkout extends React.Component<IProps, any> {
   }
   public componentDidMount() {
     if (this.props.workoutList[0] === undefined) {
+      this.props.getExerciseList();
       this.props.getWorkoutList();
     }
   }
   public render() {
     const workList = (
       <div>
-        for
+        ss
         {this.props.workoutList.map(workType => {
           if (
-            workType.name.slice(0, this.props.workoutTypeText.length) ===
-            this.props.workoutTypeText
+            workType.name
+              .slice(0, this.props.workoutTypeText.length)
+              .toLocaleLowerCase() ===
+            this.props.workoutTypeText.toLocaleLowerCase()
           ) {
             return (
               <a className="dropdown-item" key={workType.id} href="#">
@@ -61,6 +77,7 @@ class NewWorkout extends React.Component<IProps, any> {
 
     return (
       <div>
+        <p> {this.props.exerciseList[0]}</p>
         <div className="dropdown">
           <button
             className="btn btn-secondary dropdown-toggle"
@@ -89,6 +106,7 @@ const mapStateToProps = (state: IState) => {
   return {
     errorMessgae: state.misc.errorMessage,
     exercise: state.workout.currExercise,
+    exerciseList: state.info.exerciseList,
     exerciseTypeText: state.misc.exerciseTypeText,
     workout: state.workout.currWorkout,
     workoutList: state.info.workoutList,
@@ -97,6 +115,7 @@ const mapStateToProps = (state: IState) => {
 };
 
 const mapDispatchToProps = {
+  getExerciseList,
   getWorkoutList,
   updateExerText,
   updateWorkText,
