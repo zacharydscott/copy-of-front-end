@@ -4,7 +4,8 @@ import { IState } from "../reducers";
 import { changeUsernameAndPassword } from "../actions/login/login.actions";
 import { submitLogin } from "../actions/login/login.actions";
 import "../App.css";
-interface IProps {
+import {RouteComponentProps} from "react-router";
+interface IProps extends RouteComponentProps<{}>{
   errorMessage: string;
   username: string;
   password: string;
@@ -22,6 +23,9 @@ class Login extends React.Component<IProps, any> {
   public login(e: any) {
     e.preventDefault();
     this.props.submitLogin(this.props.username, this.props.password);
+    if(this.props.errorMessage === ""){
+        this.props.history.push("/dashboard");
+    }
   }
   public updateLogin(e: any) {
     e.preventDefault();

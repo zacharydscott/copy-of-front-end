@@ -6,6 +6,10 @@ export class Exercise {
   public set: number;
   public rep: number;
 
+  /**
+   * This is a specific instaniation of an exercise, including it's exercise type, reps, and sets.
+   * This object is used in workouts as an array, to show what a user did for a workout.
+   */
   constructor(
     name: string,
     id: number,

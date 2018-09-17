@@ -13,7 +13,7 @@
   padding: 20px;
   color: white;
 }
-
+a
 .App-title {
   font-size: 1.5em;
 }
@@ -41,4 +41,154 @@
 
   font-size: 125%
 
+#home-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#manager-home-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#sign-in-header {
+  margin-top: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#sign-in-container {
+  margin-top: 100px;
+  margin-bottom: 100px;
+  margin-left: 400px;
+}
+
+#pending-reimbs-header {
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#processed-reimbs-header {
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#error-message {
+  color: red;
+}
+
+/*****************************
+  NAV
+*****************************/
+.rev-logo {
+  width: auto;
+  height: 2em;
+  margin-right: 2em;
+}
+
+/*.margin-navs {*/
+/*margin-right: 2em*/
+/*}*/
+
+
+/*.navbar-light .navbar-navs .navs-link:focus, .navbar-light .navbar-navs .navs-link:hover {*/
+/*!*color: rgba(0,0,0,.7);*!*/
+/*color: darkgrey !important;*/
+/*}*/
+
+/*.navbar-expand-md .navbar-navs .navs-link {*/
+/*padding-right: .75rem !important;*/
+/*padding-left: .75rem !important;*/
+/*}*/
+
+/*.navbar li a, .navbar {*/
+/*color: #8cb5ce !important;*/
+/*padding: 0 15px;*/
+/*height: 70px;*/
+/*line-height: 80px;*/
+/*}*/
+
+/*.bg-light {*/
+/*background-color: #ffffff !important;*/
+/*}*/
+
+/*navs {*/
+/*min-height: 60px;*/
+/*z-index: 9999;*/
+/*border-bottom: 1px solid #ffffff !important;*/
+/*margin-bottom: 20px;*/
+/*-webkit-box-shadow: 1px -12px 28px -1px rgba(0, 0, 0, 0.87);*/
+/*-moz-box-shadow: 1px -12px 28px -1px rgba(0, 0, 0, 0.87);*/
+/*box-shadow: 1px -12px 28px -1px rgba(0, 0, 0, 0.87);*/
+/*font-size: 15px !important;*/
+/*font-family: Montserrat, sans-serif;*/
+/*}*/
+
+/*#examples-dropdown {*/
+/*cursor: pointer;*/
+/*}*/
+
+/*****************************
+  Clicker
+*****************************/
+.blue {
+  color: blue;
+}
+
+.red {
+  color: red;
+}
+
+/*****************************
+  Slide Animation
+*****************************/
+.slideanim {visibility:hidden;}
+.slide {
+  animation-name: slide;
+  -webkit-animation-name: slide;
+  animation-duration: 1s;
+  -webkit-animation-duration: 1s;
+  visibility: visible;
+}
+@keyframes slide {
+  0% {
+    opacity: 0;
+    transform: translateY(70%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+}
+@-webkit-keyframes slide {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateY(70%);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translateY(0%);
+  }
+}
+@media screen and (max-width: 768px) {
+  .col-sm-4 {
+    text-align: center;
+    margin: 25px 0;
+  }
+  .btn-lg {
+    width: 100%;
+    margin-bottom: 35px;
+  }
+}
+@media screen and (max-width: 480px) {
+  .logo {
+    font-size: 150px;
+  }
 }
