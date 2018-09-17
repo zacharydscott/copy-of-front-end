@@ -2,7 +2,7 @@ import * as React from 'react';
 import logo from '../../logo.svg';
 import { Navbar, NavbarBrand, NavbarNav, NavbarToggler, Collapse, NavItem, NavLink } from 'mdbreact';
 
-export class NavComponent extends React.Component<any, any> {
+export class HomeNavComponent extends React.Component<any, any> {
     constructor(props: any) {
         super(props);
         this.state = {
@@ -29,7 +29,7 @@ export class NavComponent extends React.Component<any, any> {
                     </NavbarNav>
                     <NavbarNav right>
                         <NavItem>
-                            <NavLink to="/sign-in">Log In</NavLink>
+                            <NavLink to="/sign-in">Log Out</NavLink>
                         </NavItem>
                     </NavbarNav>
                 </Collapse>

@@ -45,7 +45,11 @@ export const submitLogin = (logUsername: string, logPassword: string) => (
   })
     .then((resp: any) => {
       if (resp.status === 200) {
+          dispatch(
+              updateErrorMessage(``)
+          );
         return resp;
+
       } else if (resp.status === 403) {
         dispatch(
           updateErrorMessage(`Something went pretty wrong${resp.status}`)

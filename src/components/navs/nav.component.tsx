@@ -29,7 +29,7 @@ export class NavComponent extends React.Component<any, any> {
                     </NavbarNav>
                     <NavbarNav right>
                         <NavItem>
-                            <NavLink to="/sign-in">Log Out</NavLink>
+                            <NavLink to="/login">Log In</NavLink>
                         </NavItem>
                     </NavbarNav>
                 </Collapse>
