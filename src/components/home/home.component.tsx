@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {NavComponent} from "../nav/nav.component";
+import {NavComponent} from "../navs/nav.component";
 
 export class HomeComponent extends React.Component<any, any> {
     constructor(props: any){
