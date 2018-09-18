@@ -58,7 +58,9 @@ export const getExerciseList = () => (dispatch: any) => {
   })
     .then((resp: any) => {
       if (resp.status === 200) {
-        return resp;
+        window.console.log(resp);
+        window.console.log("going to .json() it");
+        return resp.json();
       } else if (resp.status === 403) {
         dispatch(
           updateErrorMessage(`Something went pretty wrong${resp.status}`)
@@ -76,13 +78,8 @@ export const getExerciseList = () => (dispatch: any) => {
       }
     })
     .then((resp: any) => {
-      const newresp = resp.json();
-      window.console.log(newresp);
-      return newresp;
-    })
-    .then((resp: any) => {
       window.console.log(resp);
-      const newExerciseList: WorkoutType[] = resp.map((et: any) => {
+      const newExerciseList: ExerciseType[] = resp.map((et: any) => {
         return new ExerciseType(et.name, et.id, et.description);
       });
       window.console.log(newExerciseList);
@@ -95,6 +92,8 @@ export const getExerciseList = () => (dispatch: any) => {
       dispatch(updateErrorMessage(""));
     })
     .catch((err: any) => {
-      dispatch(updateErrorMessage(`Something went terribly wrong`));
+      dispatch(
+        updateErrorMessage(`Something went terribly wrong "  ${err}  "`)
+      );
     });
 };
