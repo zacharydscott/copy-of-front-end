@@ -24,6 +24,16 @@ export const workoutReducer = (
         ...state,
         currWorkout: action.payload.currWorkout
       };
+    case workoutTypes.CHANGE_CURR_EXERCISE:
+      return {
+        ...state,
+        currExercise: action.payload.currExercise
+      };
+    case workoutTypes.ENTER_EXERCISE:
+      return {
+        ...state,
+        currWorkout: action.payload.currWorkout
+      };
     default:
       return state;
   }
