@@ -26,6 +26,9 @@ export class HomeNavComponent extends React.Component<any, any> {
                 { !this.state.isWideEnough && <NavbarToggler onClick = { this.onClick } />}
                 <Collapse isOpen = { this.state.collapse } navbar>
                     <NavbarNav left>
+                        <NavItem>
+                            <NavLink to="/view-workout-history">Workout History</NavLink>
+                        </NavItem>
                     </NavbarNav>
                     <NavbarNav right>
                         <NavItem>

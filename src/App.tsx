@@ -3,7 +3,7 @@ import "./App.css";
 import './include/mdb';
 // import RegisterUser from "./components/register-user";
 // import NewWorkout from "./components/new-workout";
-import ViewWorkout from "./components/view-workout";
+// import ViewWorkout from "./components/view-workout";
 import Login from "./components/login";
 import Dashboard from "./components/dashboard/dashboard";
 import { store } from "./store";
