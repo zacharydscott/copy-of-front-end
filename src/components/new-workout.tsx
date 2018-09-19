@@ -25,6 +25,7 @@ interface IProps {
   currExercise: Exercise;
   workoutList: WorkoutType[];
   errorMessgae: string;
+  userId: number;
   enterExercise: (exercise: Exercise, workout: Workout) => any;
   changeCurrExercise: (exercise: Exercise) => any;
   getWorkoutList: () => any;
@@ -33,34 +34,27 @@ interface IProps {
   updateWorkText: (text: string) => any;
   updateExerText: (text: string) => any;
   updateWorkoutType: (workout: Workout, workoutType: WorkoutType) => any;
-  submitWorkout: (workout: Workout) => any;
+  submitWorkout: (userId: number, workout: Workout) => any;
 }
 
 class NewWorkout extends React.Component<IProps, any> {
   constructor(props: any) {
     super(props);
-    this.updateType = this.updateType.bind(this);
+
     this.changeWorkText = this.changeWorkText.bind(this);
+    this.changeExerText = this.changeExerText.bind(this);
     this.changeExercise = this.changeExercise.bind(this);
     this.enterExercise = this.enterExercise.bind(this);
     this.submit = this.submit.bind(this);
+    this.changeExerciseType = this.changeExerciseType.bind(this);
+    this.changeWorkoutType = this.changeWorkoutType.bind(this);
   }
 
   public submit(e: any) {
     e.preventDefault();
-    this.props.submitWorkout(this.props.workout);
+    this.props.submitWorkout(this.props.userId, this.props.workout);
   }
-  public updateType(e: any) {
-    e.preventDefault();
-    const newType = this.props.workoutList.find(type => {
-      return !!type.id === e.target.key;
-    });
 
-    this.props.updateWorkoutType(
-      this.props.workout,
-      newType || this.props.workoutList[0]
-    );
-  }
   public enterExercise(e: any) {
     e.preventDefault();
     if (
@@ -82,16 +76,52 @@ class NewWorkout extends React.Component<IProps, any> {
   }
   public changeExerText(e: any) {
     e.preventDefault();
-
     this.props.updateExerText(e.target.value);
   }
   public componentDidMount() {
     if (this.props.workoutList[0] === undefined) {
       this.props.getExerciseList();
-      // this.props.getWorkoutList();
+      this.props.getWorkoutList();
     }
   }
 
+  public changeWorkoutType(e: any) {
+    const newType =
+      this.props.workoutList.find((type: WorkoutType) => {
+        window.console.log(e.target.id);
+        window.console.log(type.id);
+        return +e.target.id === type.id;
+      }) || this.props.workoutList[0];
+
+    this.props.updateWorkoutType(this.props.workout, newType);
+    this.props.updateWorkText(newType.name || "No Type");
+  }
+
+  public changeExerciseType(e: any) {
+    const newTypeVal =
+      this.props.exerciseList.find((type: ExerciseType) => {
+        window.console.log(e.target.id);
+        window.console.log(type.id);
+        return +e.target.id === type.id;
+      }) || this.props.exerciseList[0];
+
+    const newType = new ExerciseType(
+      newTypeVal.name,
+      newTypeVal.id,
+      newTypeVal.description
+    );
+    this.props.changeCurrExercise(
+      new Exercise(
+        newType.name,
+        0,
+        newType.description,
+        this.props.currExercise.weight,
+        this.props.currExercise.set,
+        this.props.currExercise.rep
+      )
+    );
+    this.props.updateExerText(newType.name || "No Type");
+  }
   public changeExercise(e: any) {
     e.preventDefault();
     switch (e.target.id) {
@@ -149,8 +179,19 @@ class NewWorkout extends React.Component<IProps, any> {
             this.props.workoutTypeText.toLocaleLowerCase()
           ) {
             return (
-              <a className="dropdown-item" key={workType.id} href="#">
-                <p key={workType.id}>{workType.name}</p>
+              <a
+                className="dropdown-item"
+                key={workType.id}
+                href="#"
+                id={workType.id.toString()}
+              >
+                <p
+                  key={workType.id}
+                  onClick={this.changeWorkoutType}
+                  id={workType.id.toString()}
+                >
+                  {workType.name}
+                </p>
               </a>
             );
           }
@@ -165,12 +206,22 @@ class NewWorkout extends React.Component<IProps, any> {
           if (
             exerType.name
               .slice(0, this.props.exerciseTypeText.length)
-              .toLocaleLowerCase() ===
-            this.props.exerciseTypeText.toLocaleLowerCase()
+              .toLowerCase() === this.props.exerciseTypeText.toLowerCase()
           ) {
             return (
-              <a className="dropdown-item" key={exerType.id} href="#">
-                <p key={exerType.id}>{exerType.name}</p>
+              <a
+                className="dropdown-item"
+                key={exerType.id}
+                href="#"
+                id={exerType.id.toString()}
+              >
+                <p
+                  key={exerType.id}
+                  onClick={this.changeExerciseType}
+                  id={exerType.id.toString()}
+                >
+                  {exerType.name}
+                </p>
               </a>
             );
           }
@@ -195,8 +246,6 @@ class NewWorkout extends React.Component<IProps, any> {
 
     return (
       <div>
-        {this.props.workout.exercises.length}
-        <p> {this.props.exerciseList[0]}</p>
         <div className="dropdown">
           <button
             className="btn btn-secondary dropdown-toggle"
@@ -281,6 +330,9 @@ class NewWorkout extends React.Component<IProps, any> {
         <button className="btn btn-primary" onClick={this.enterExercise}>
           Enter Exercise
         </button>
+        <button className="btn btn-primary" onClick={this.submit}>
+          submit Workout
+        </button>
         <table className="table table-dark">
           <thead>
             <tr>
@@ -290,27 +342,7 @@ class NewWorkout extends React.Component<IProps, any> {
               <th scope="col">set</th>
             </tr>
           </thead>
-          <tbody>
-            {exerciseTable}
-            <tr>
-              <th scope="row">1</th>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-            </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>Jacob</td>
-              <td>Thornton</td>
-              <td>@fat</td>
-            </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td>Larry</td>
-              <td>the Bird</td>
-              <td>@twitter</td>
-            </tr>
-          </tbody>
+          <tbody>{exerciseTable}</tbody>
         </table>
       </div>
     );
@@ -322,6 +354,7 @@ const mapStateToProps = (state: IState) => {
     errorMessgae: state.misc.errorMessage,
     exerciseList: state.info.exerciseList,
     exerciseTypeText: state.misc.exerciseTypeText,
+    userId: state.user.accountNumber,
     workout: state.workout.currWorkout,
     workoutList: state.info.workoutList,
     workoutTypeText: state.misc.workoutTypeText
