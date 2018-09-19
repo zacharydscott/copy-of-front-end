@@ -17,11 +17,11 @@ const initialState: IInfoState = {
 };
 export const infoReducer = (state: IInfoState = initialState, action: any) => {
   switch (action.type) {
-    // case fetchTypes.GET_WORKOUT_HISTORY:
-    //   return {
-    //     ...state,
-    //     workoutHistory: action.payload.workoutHistory
-    //   };
+    case infoTypes.GET_WORKOUT_HISTORY:
+        return {
+        ...state,
+        workoutHistory: action.payload.workoutHistory
+      };
     case infoTypes.GET_WORKOUT_LIST:
       return {
         ...state,

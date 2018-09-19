@@ -73,6 +73,7 @@ export const submitLogin = (logUsername: string, logPassword: string) => (
     })
     .then((resp: any) => {
       window.console.log(resp);
+
       dispatch({
         payload: {
           accountNumber: resp.id,

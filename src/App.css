@@ -41,7 +41,9 @@ a .App-title {
 }
 
 #table-title {
+
   font-size: 125%;
+
 }
 #home-container {
   display: flex;

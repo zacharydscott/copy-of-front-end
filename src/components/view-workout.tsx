@@ -4,11 +4,6 @@ import { IState } from "../reducers";
 import { WorkoutType } from "../models/workout-type";
 import { Exercise } from "../models/exercise";
 
-
-/**
- * This is a shell component, don't impliment this!
- * Copy and past the text into new components.
- */
 interface IProps {
 
     date: string;
@@ -22,7 +17,6 @@ interface IProps {
 class ViewWorkout extends React.Component<IProps, any> {
     constructor(props: any) {
         super(props);
-        // remember to bind your functions here
     }
 
 
@@ -31,12 +25,12 @@ class ViewWorkout extends React.Component<IProps, any> {
         const exerciseEntries = this.props.exercises.map(exercise => {
 
             return (<tr key={exercise.id}>
-                <td>{exercise.name}</td>
-                <td>{exercise.weight}</td>
+                    <td>{exercise.name}</td>
+                    <td>{exercise.weight}</td>
 
-                <td>{exercise.set}</td>
-                <td>{exercise.rep}</td>
-            </tr>
+                    <td>{exercise.set}</td>
+                    <td>{exercise.rep}</td>
+                </tr>
 
             )
         })

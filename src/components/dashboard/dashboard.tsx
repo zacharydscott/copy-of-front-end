@@ -1,7 +1,9 @@
 import * as React from "react";
 import { connect } from "react-redux";
 import { IState } from "../../reducers";
-import { HomeNavComponent } from "../navs/home-nav.component";
+
+import {HomeNavComponent} from "../navs/home-nav.component";
+import ViewWorkout from "../view-workout";
 import NewWorkout from "../new-workout";
 
 /**
@@ -18,15 +20,17 @@ class Dashboard extends React.Component<IProps, any> {
     // remember to bind your functions here
   }
 
-  public render() {
-    return (
-      <div>
-        <HomeNavComponent />
-        <p />
-        <NewWorkout />
-      </div>
-    );
-  }
+
+    public render() {
+        return (
+            <div>
+                <HomeNavComponent/>
+                <ViewWorkout/>
+                <NewWorkout/>
+            </div>
+        );
+    }
+
 }
 const mapStateToProps = (state: IState) => {
   return {
