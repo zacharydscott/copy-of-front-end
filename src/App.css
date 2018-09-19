@@ -37,10 +37,9 @@ a
   text-align: right
 }
 
-#table-title{
-
+#table-title {
   font-size: 125%
-
+}
 #home-container {
   display: flex;
   justify-content: center;
