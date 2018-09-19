@@ -33,8 +33,8 @@ export const getWorkoutList = () => (dispatch: any) => {
       return newresp;
     })
     .then((resp: any) => {
-      window.console.log(resp);
-      const newWorkoutList: WorkoutType = resp.map((wt: any) => {
+      window.console.log(`got this for workouts${resp}`);
+      const newWorkoutList: WorkoutType[] = resp.map((wt: any) => {
         return new WorkoutType(wt.name, wt.id, wt.description, []);
       });
       window.console.log(newWorkoutList);

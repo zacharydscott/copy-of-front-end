@@ -30,7 +30,7 @@ export const infoReducer = (state: IInfoState = initialState, action: any) => {
     case infoTypes.GET_EXERCISE_LIST:
       return {
         ...state,
-        workoutList: action.payload.exerciseList
+        exerciseList: action.payload.exerciseList
       };
     default:
       return state;
