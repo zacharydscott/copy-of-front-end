@@ -1,53 +1,72 @@
 import * as React from "react";
 import { connect } from "react-redux";
 import { IState } from "../reducers";
-import {RouteComponentProps} from "react-router";
+import {getWorkoutHistory, getWorkoutList} from "../actions/info/info.actions";
 import {WorkoutSnapshot} from "../models/workout-snapshot";
 import {Workout} from "../models/workout";
 import {WorkoutType} from "../models/workout-type";
 import {ExerciseType} from "../models/exercise-type";
+import {HomeNavComponent} from "./navs/home-nav.component";
 
 /**
  * This is a shell component, don't impliment this!
  * Copy and past the text into new components.
  */
-interface IProps extends RouteComponentProps<{}>, IState {
+interface IProps extends IState {
+    userId: number
     workoutHistory: WorkoutSnapshot[];
     viewWorkout: Workout;
     workoutList: WorkoutType[];
     exerciseList: ExerciseType[];
+    getWorkoutList: () => any;
+    getWorkoutHistory: (userId: number, workoutList: WorkoutType[]) => any;
 }
 
 class ViewWorkoutHistory extends React.Component<IProps, any> {
     constructor(props: any) {
         super(props);
-        // remember to bind your functions here
+    }
+
+    public componentDidMount() {
+        if(this.props.workoutList[1] === undefined){
+            this.props.getWorkoutList();
+        }
+        if(this.props.workoutHistory[1] === undefined){
+            this.props.getWorkoutHistory(this.props.userId, this.props.workoutList);
+        }
     }
 
     public render() {
-        // const workoutEntries = this.props.workoutHistory.map(workout => {
-        //     return (<tr key={workout.order}>
-        //             <td>{workout.date}</td>
-        //             <td>{workout.type}</td>
-        //         </tr>
-        //
-        //     )
-        // })
+        const workoutEntries = this.props.workoutHistory.map(workout => {
+            return (
+                <div id="date-type" key={workout.id}>
+                    <p id="order">Workout Number : {workout.order}</p>
+                    <p>Date : {workout.date}</p>
+                    <p>Type : {workout.type}</p>
+                </div>
+
+            )
+        });
         return (
             <div>
-                <p>Insert test here</p>
+                <HomeNavComponent/>
+                {window.console.log(this.props.workoutHistory)}
+                {workoutEntries}
             </div>
         );
     }
 }
 const mapStateToProps = (state: IState) => {
     return {
-        // insert properties of the state here
+        userId: state.user.accountNumber,
+        workoutList: state.info.workoutList,
+        workoutHistory: state.info.workoutHistory,
     };
 };
 
 const mapDispatchToProps = {
-    // insert actions here
+    getWorkoutList,
+    getWorkoutHistory
 };
 
 export default connect(

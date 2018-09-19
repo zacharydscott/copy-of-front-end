@@ -6,6 +6,7 @@ import './include/mdb';
 // import ViewWorkout from "./components/view-workout";
 import Login from "./components/login";
 import Dashboard from "./components/dashboard/dashboard";
+import ViewWorkoutHistory from "./components/view-workout-history";
 import { store } from "./store";
 import { Provider } from "react-redux";
 import {BrowserRouter, Route, Switch} from "react-router-dom";
@@ -21,6 +22,7 @@ class App extends React.Component {
                   <Switch>
                       <Route path="/home" component={HomeComponent} />
                     <Route path="/dashboard" component={Dashboard} />
+                      <Route path="/view-workout-history" component={ViewWorkoutHistory}/>
                       <Route path="/login" component={Login} />
                       <Route component={HomeComponent} />
                   </Switch>

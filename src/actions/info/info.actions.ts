@@ -5,12 +5,13 @@ import { ExerciseType } from "../../models/exercise-type";
 import { WorkoutSnapshot } from "../../models/workout-snapshot";
 
 export const getWorkoutHistory = (userId: number, workoutList: WorkoutType[]) => (dispatch: any) => {
-  fetch(`http://localhost:6969/workouts/${userId}`, {
+  fetch(`http://localhost:6969/users/workouts/${userId}`, {
     headers: { "Content-Type": "application/json" },
     method: "GET"
   })
     .then((resp:any) => {
       if (resp.status === 200) {
+        window.console.log(resp);
         return resp.json();
       } else if (resp.status === 401) {
         dispatch(
@@ -47,6 +48,8 @@ export const getWorkoutHistory = (userId: number, workoutList: WorkoutType[]) =>
       );
     })
 }
+
+
 
 export const getWorkoutList = () => (dispatch: any) => {
   fetch("http://localhost:6969/workout", {

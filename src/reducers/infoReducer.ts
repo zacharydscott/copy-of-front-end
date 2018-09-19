@@ -18,7 +18,7 @@ const initialState: IInfoState = {
 export const infoReducer = (state: IInfoState = initialState, action: any) => {
   switch (action.type) {
     case infoTypes.GET_WORKOUT_HISTORY:
-      return {
+        return {
         ...state,
         workoutHistory: action.payload.workoutHistory
       };
